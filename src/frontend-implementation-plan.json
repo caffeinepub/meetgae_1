@@ -1,0 +1,40 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Compact feed post composer and unified text/photo compose flow",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "summary": "Make the feed post composer container more compact by reducing padding/vertical whitespace only within the specified container XPath.",
+      "acceptanceCriteria": [
+        "The composer container referenced by XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1] takes up noticeably less vertical space than before (e.g., reduced padding/top spacing and tighter gaps).",
+        "No other page sections outside the selected XPath are modified as part of this change."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/posts/PostComposer.tsx",
+          "operation": "modify",
+          "description": "Adjust only the post composer container styling (the Card/CardContent wrapping the composer) to reduce padding and overall vertical footprint without changing any other feed page sections. Keep all other spacing/layout changes scoped to the container element corresponding to the specified XPath."
+        }
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "summary": "Unify text and photo posting into a single composer flow controlled by the two post-type buttons, while preserving Pro/Admin-only photo attachment and upload progress feedback.",
+      "acceptanceCriteria": [
+        "Text posting and photo posting are part of one composer experience (single compose area), rather than two separate composer forms/screens.",
+        "When no image is selected, submitting creates a text post using the existing text-post mutation flow.",
+        "When an image is selected, submitting creates a photo post using the existing photo-post mutation flow, including upload progress feedback.",
+        "If the user is not Pro/Admin, the photo selection capability is not enabled (the user cannot attach/select a photo), while text posting continues to work.",
+        "Only the two selected buttons (by XPath) are changed to support the unified flow; no unrelated buttons outside the selected XPaths are modified."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/posts/PostComposer.tsx",
+          "operation": "modify",
+          "description": "Refactor the composer so both post-type buttons (TabsTrigger buttons at the specified XPaths) drive a single shared compose form/state. Implement unified submit logic: if an image is attached, create a photo post; otherwise create a text post. Preserve upload progress using the blob-storage ExternalBlob.withUploadProgress mechanism and keep the existing Pro/Admin restriction by disabling/guarding photo attachment UI for non-Pro/non-Admin users. Verify the component's usage instructions before implementing."
+        }
+      ]
+    }
+  ]
+}

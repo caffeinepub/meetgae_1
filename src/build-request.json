@@ -1,0 +1,59 @@
+{
+  "kind": "build_request",
+  "title": "Shrink feed post composer container and unify text + photo posting into one composer",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "text": "Update ONLY the post composer container at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1] to be visually smaller/more compact (reduced padding and vertical spacing), while keeping the composer usable.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Make the div small and text and photo post in one"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The composer container referenced by XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1] takes up noticeably less vertical space than before (e.g., reduced padding/top spacing and tighter gaps).",
+        "No other page sections outside the selected XPath are modified as part of this change."
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "text": "Update ONLY the two post-type buttons at XPaths /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[1] and /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[2] so that text and photo posting are handled within a single unified composer flow (no separate/isolated composer experiences). The unified flow must still respect the existing Pro/Admin restriction for photo posting.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Make the div small and text and photo post in one"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Text posting and photo posting are part of one composer experience (single compose area), rather than two separate composer forms/screens.",
+        "When no image is selected, submitting creates a text post using the existing text-post mutation flow.",
+        "When an image is selected, submitting creates a photo post using the existing photo-post mutation flow, including upload progress feedback.",
+        "If the user is not Pro/Admin, the photo selection capability is not enabled (the user cannot attach/select a photo), while text posting continues to work.",
+        "Only the two selected buttons (by XPath) are changed to support the unified flow; no unrelated buttons outside the selected XPaths are modified."
+      ]
+    }
+  ],
+  "constraints": [
+    "Apply the user-requested UI changes ONLY to the selected elements identified by these XPaths: /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1], /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[1], /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[2].",
+    "Use English for any user-facing text.",
+    "Do not modify files under frontend/src/components/ui (read-only UI component sources).",
+    "Do not change backend interfaces, schema, or Motoko code for this request."
+  ],
+  "nonGoals": [
+    "Changing the feed layout outside the post composer area.",
+    "Adding new subscription tiers or changing Pro/Admin eligibility logic.",
+    "Changing how posts are rendered in the feed/profile list."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

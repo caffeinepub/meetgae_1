@@ -1,0 +1,48 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T13:07:18.833Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 2,
+    "implemented": 2,
+    "items": [
+      {
+        "id": "REQ-25",
+        "summary": "Update ONLY the post composer container at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1] to be visually smaller/more compact (reduced padding and vertical spacing), while keeping the composer usable.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/posts/PostComposer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/posts/PostComposer.tsx"
+        ]
+      },
+      {
+        "id": "REQ-26",
+        "summary": "Update ONLY the two post-type buttons at XPaths /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[1] and /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[2] so that text and photo posting are handled within a single unified composer flow (no separate/isolated composer experiences). The unified flow must still respect the existing Pro/Admin restriction for photo posting.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/posts/PostComposer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/posts/PostComposer.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/posts/PostComposer.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

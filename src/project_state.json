@@ -1,0 +1,300 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 13,
+  "summary": "Expand MeetGae with monetization and enhanced social/profile features: add post likes/comments, required profile fields (gender/location/interests/looking-for), Free vs Pro subscription tiers with Stripe payments and daily limits for Free users, plus an admin role (with ability to add employees) and full Pro access. Also add Pro-only photo posts.",
+  "architectural_notes": [
+    "Messaging must be inbox-style (non real-time chat); real-time chat is not required/supported.",
+    "If no explicit Internet Identity anchor is configured for admin, assign admin to the first user who logs in (bootstrap admin).",
+    "Admin users must have full Pro subscription access (no Free-tier usage limits) and full admin control permissions."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "existing_features": [
+    {
+      "id": "feature-implement-authentication-using-internet-identity-and-require-sign-in-before-any-social-actions-create-post-follow-unfollow-send-messages-edit-profile",
+      "title": "Implement authentication using Internet Identity and require sign-in before any social actions (create post, follow/unfollow, send messages, edit profile).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-user-profile-system-where-each-authenticated-user-can-view-and-edit-their-profile-details-and-upload-a-profile-photo-other-users-can-view-profiles",
+      "title": "Create a user profile system where each authenticated user can view and edit their profile details and upload a profile photo; other users can view profiles.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-follow-system-users-can-follow-and-unfollow-other-users-and-each-profile-shows-follower-following-counts-and-follow-state",
+      "title": "Add a follow system: users can follow and unfollow other users, and each profile shows follower/following counts and follow state.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-text-posts-authenticated-users-can-create-delete-own-and-view-posts-provide-a-feed-view-and-a-profile-specific-posts-view",
+      "title": "Implement text posts: authenticated users can create, delete (own), and view posts; provide a feed view and a profile-specific posts view.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-inbox-style-direct-messaging-non-real-time-users-can-start-a-conversation-with-another-user-and-send-receive-messages-include-an-inbox-list-and-a-conversation-detail-view",
+      "title": "Implement inbox-style direct messaging (non real-time): users can start a conversation with another user and send/receive messages; include an inbox list and a conversation detail view.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-core-navigation-and-pages-landing-login-feed-inbox-profile-self-profile-other-user-and-basic-discovery-a-simple-user-list-search-to-find-people-to-follow-message",
+      "title": "Provide core navigation and pages: Landing/Login, Feed, Inbox, Profile (self), Profile (other user), and basic discovery (a simple user list/search to find people to follow/message).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-define-a-consistent-visual-theme-for-meetgae-and-apply-it-across-all-screens-using-tailwind-shadcn-components-avoid-blue-purple-as-the-primary-palette",
+      "title": "Define a consistent visual theme for MeetGae and apply it across all screens using Tailwind + shadcn components (avoid blue/purple as the primary palette).",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-frontend-data-layer-use-react-query-for-fetching-mutating-profiles-follows-posts-and-messages-include-loading-empty-and-error-states-for-each-major-view",
+      "title": "Frontend data layer: use React Query for fetching/mutating profiles, follows, posts, and messages; include loading, empty, and error states for each major view.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-generate-and-include-required-static-images-for-the-app-logo-and-default-avatar-and-render-them-from-frontend-static-assets",
+      "title": "Generate and include required static images for the app (logo and default avatar) and render them from frontend static assets.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-feed-and-profile-post-uis-to-display-likes-and-comments-directly-under-each-post-and-allow-authenticated-users-to-like-unlike-and-add-comments-with-proper-loading-error-empty-states",
+      "title": "Update the Feed and Profile post UIs to display likes and comments directly under each post, and allow authenticated users to like/unlike and add comments with proper loading/error/empty states.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-extend-the-user-profile-model-and-ui-to-require-the-following-fields-for-every-user-gender-city-state-interests-top-bottom-versatile-lesbian-and-looking-for-relationship-casual-fun-enforce-required-validation-on-both-frontend-and-backend",
+      "title": "Extend the user profile model and UI to require the following fields for every user: gender, city, state, interests (top/bottom/versatile/lesbian), and looking for (relationship/casual/fun). Enforce required validation on both frontend and backend.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-free-vs-pro-subscription-tiers-with-usage-limits-free-users-are-limited-to-3-posts-day-and-10-messages-day-pro-users-have-unlimited-posts-and-messages-enforce-the-limits-in-the-backend-and-reflect-the-state-in-the-frontend",
+      "title": "Implement Free vs Pro subscription tiers with usage limits: Free users are limited to 3 posts/day and 10 messages/day; Pro users have unlimited posts and messages. Enforce the limits in the backend and reflect the state in the frontend.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-capability-where-admin-users-have-full-pro-access-and-can-add-employees-admin-managed-users-provide-backend-methods-and-a-minimal-admin-ui-to-add-list-employees",
+      "title": "Add an admin capability where admin users have full Pro access and can add employees (admin-managed users). Provide backend methods and a minimal admin UI to add/list employees.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-selected-element-xpath-html-1-body-1-div-1-div-1-div-1-div-1-div-1-div-2-h1-1-so-that-the-landing-page-main-heading-welcome-to-meetgae-uses-an-lgbtq-rainbow-color-treatment-e-g-a-multi-stop-rainbow-gradient-instead-of-the-current-primary-accent-gradient",
+      "title": "Update ONLY the selected element (XPath: /html[1]/body[1]/div[1]/div[1]/div[1]/div[1]/div[1]/div[2]/h1[1]) so that the landing page main heading “Welcome to MeetGae” uses an LGBTQ/rainbow color treatment (e.g., a multi-stop rainbow gradient) instead of the current primary/accent gradient.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-frontend-post-composer-ui-to-support-creating-either-a-text-post-or-a-photo-post-where-the-photo-post-option-is-shown-enabled-only-when-the-signed-in-user-is-on-the-pro-plan-or-is-an-admin",
+      "title": "Update the frontend post composer UI to support creating either a text post or a photo post, where the photo-post option is shown/enabled only when the signed-in user is on the Pro plan (or is an admin).",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-react-query-mutations-and-cache-invalidation-for-creating-photo-posts-mirroring-the-existing-create-text-post-flow-invalidate-feed-and-caller-profile-queries-so-counts-usage-refresh",
+      "title": "Add React Query mutations and cache invalidation for creating photo posts, mirroring the existing create text post flow (invalidate feed and caller profile queries so counts/usage refresh).",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-post-list-feed-ui-to-render-photo-posts-inline-in-the-feed-and-on-profile-pages-while-keeping-existing-rendering-for-text-posts-likes-and-comments",
+      "title": "Update the post list/feed UI to render photo posts inline in the feed and on profile pages, while keeping existing rendering for text posts, likes, and comments.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-post-composer-container-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-div-2-div-1-to-be-visually-smaller-more-compact-reduced-padding-and-vertical-spacing-while-keeping-the-composer-usable",
+      "title": "Update ONLY the post composer container at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1] to be visually smaller/more compact (reduced padding and vertical spacing), while keeping the composer usable.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-only-the-two-post-type-buttons-at-xpaths-html-1-body-1-div-1-div-1-main-1-div-1-div-2-div-1-div-1-div-1-button-1-and-html-1-body-1-div-1-div-1-main-1-div-1-div-2-div-1-div-1-div-1-button-2-so-that-text-and-photo-posting-are-handled-within-a-single-unified-composer-flow-no-separate-isolated-composer-experiences-the-unified-flow-must-still-respect-the-existing-pro-admin-restriction-for-photo-posting",
+      "title": "Update ONLY the two post-type buttons at XPaths /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[1] and /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[2] so that text and photo posting are handled within a single unified composer flow (no separate/isolated composer experiences). The unified flow must still respect the existing Pro/Admin restriction for photo posting.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create MeetGae website/app for gays and lesbians to connect",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "User accounts and profiles with photo uploads",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Follow/unfollow other users",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create and view text posts (feed/profile posts)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Inbox-style direct messaging between users (non real-time)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Backend persistence: in the single Motoko main actor, add stable in-canister storage for users/profiles, follow relations, posts, conversations, and messages; expose query/update methods needed by the frontend.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add likes and comments on posts (visible under posts in feed and profile views)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add required profile fields: gender, city, state, interests (top/bottom/versatile/lesbian), and looking-for (relationship/casual/fun)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Implement Free vs Pro subscription plans with Stripe: Free limited to 3 posts/day and 10 messages/day; Pro Rs49/month or Rs499/year with unlimited posts/messages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Admin role: admin has full Pro access and can add employees (admin-managed users)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Implement post likes and post comments in the backend, including persistent storage, authorization checks (signed-in users only), and query methods to fetch like counts, whether the caller liked a post, and comments for a post.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Update MeetGae visual theme to use LGBTQ/rainbow color palette (LGBTQ colours) across the UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Allow Pro users to create photo posts (image-based posts)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Extend the backend post model and APIs to support photo posts in addition to existing text posts, so feeds and profile post lists can return both text and photo posts with enough information for the frontend to render them (including an image blob reference/URL for photo posts).",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Add a backend update method to create a photo post that accepts an uploaded image and optional caption text, and enforce that only Pro users (and admins) can create photo posts.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Update backend authorization so that any principal granted admin privileges is recognized as an admin consistently across the canister (for example: admin checks used by photo posts, deleting others’ posts, and admin-only queries).",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Ensure admin users have full Pro access in the backend by bypassing Free daily limits for posting and messaging, and allowing admin users to perform Pro-only actions regardless of their stored subscription tier.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "When an admin is added via the existing admin flow, ensure the backend also marks that user as an admin in their stored profile data and grants them Pro-level subscription status for any UI that reads plan/admin state from the user profile.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "UI update: make the post composer container (div) smaller and combine text + photo posting into a single unified composer",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "MeetGae",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

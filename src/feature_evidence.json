@@ -1,0 +1,45 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-only-the-post-composer-container-at-xpath-html-1-body-1-div-1-div-1-main-1-div-1-div-2-div-1-to-be-visually-smaller-more-compact-reduced-padding-and-vertical-spacing-while-keeping-the-composer-usable",
+      "featureTitle": "Update ONLY the post composer container at XPath /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1] to be visually smaller/more compact (reduced padding and vertical spacing), while keeping the composer usable.",
+      "files": [
+        "frontend/src/components/posts/PostComposer.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-25"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-only-the-two-post-type-buttons-at-xpaths-html-1-body-1-div-1-div-1-main-1-div-1-div-2-div-1-div-1-div-1-button-1-and-html-1-body-1-div-1-div-1-main-1-div-1-div-2-div-1-div-1-div-1-button-2-so-that-text-and-photo-posting-are-handled-within-a-single-unified-composer-flow-no-separate-isolated-composer-experiences-the-unified-flow-must-still-respect-the-existing-pro-admin-restriction-for-photo-posting",
+      "featureTitle": "Update ONLY the two post-type buttons at XPaths /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[1] and /html[1]/body[1]/div[1]/div[1]/main[1]/div[1]/div[2]/div[1]/div[1]/div[1]/button[2] so that text and photo posting are handled within a single unified composer flow (no separate/isolated composer experiences). The unified flow must still respect the existing Pro/Admin restriction for photo posting.",
+      "files": [
+        "frontend/src/components/posts/PostComposer.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-26"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
